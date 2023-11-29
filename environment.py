@@ -1,5 +1,6 @@
 # environment.py
 import random
+from typing import List
 
 OBSTACLE = '-1'
 MAP_ROAD = '-'
@@ -7,7 +8,10 @@ MAP_OBSTACLE = 'O'
 CLEAN_PER_TIME = 10
 
 class Environment:
-    def __init__(self, size=5, dirty_prob=0.2):
+    def generate_random_dirt(self) -> None:
+        self.maze = [[1 if random.random() < self.dirty_prob else 0 for _ in range(self.size)] for _ in range(self.size)]
+class Environment:
+    def __init__(self, size: int = 5, dirty_prob: float = 0.2) -> None:
         self.size = size
         self.positionX = random.randint(0, size - 1)
         self.positionY = random.randint(0, size - 1)
@@ -15,7 +19,7 @@ class Environment:
         self.maze = [[0 for _ in range(size)] for _ in range(size)]
         self.generate_random_dirt()
 
-    def generate_random_dirt(self):
+    def generate_random_dirt(self) -> None:
         for x in range(self.size):
             for y in range(self.size):
                 if random.random() < self.dirty_prob:
@@ -52,11 +56,12 @@ class Environment:
             for y in range(self.size):
                 print(f'{self.maze[x][y]:2}', end=' ')
             print()
-    def visualize(self):
+    def visualize(self) -> None:
+        if self.positionX % 2 == 0:  # Adicione uma condição para espaçar visualizações
             for x in range(self.size):
                 for y in range(self.size):
                     if self.positionX == x and self.positionY == y:
-                        print('A', end=' ')  # Representação do aspirador
+                        print('A', end=' ')
                     else:
                         print(f'{self.maze[x][y]:2}', end=' ')
                 print()

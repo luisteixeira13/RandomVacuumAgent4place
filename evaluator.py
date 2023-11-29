@@ -1,7 +1,11 @@
 # evaluator.py
 
+from environment import Environment
+
+
 class Evaluator:
-    def __init__(self):
+    
+    def __init__(self) -> None:
         self.dirty_degree = 0
         self.consumed_energy = 0
         self.total_dirty = 0
@@ -9,7 +13,7 @@ class Evaluator:
         self.new_dirty = 0
         self.LIFE_TIME = 2000
 
-    def evaluate(self, action, env):
+    def evaluate(self, action: str, env: Environment) -> None:
         if action == 'SUCK':
             self.consumed_energy += 2
         elif action != 'IDLE':
