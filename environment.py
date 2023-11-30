@@ -8,10 +8,7 @@ MAP_OBSTACLE = 'O'
 CLEAN_PER_TIME = 10
 
 class Environment:
-    def generate_random_dirt(self) -> None:
-        self.maze = [[1 if random.random() < self.dirty_prob else 0 for _ in range(self.size)] for _ in range(self.size)]
-class Environment:
-    def __init__(self, size: int = 5, dirty_prob: float = 0.2) -> None:
+    def __init__(self, size: int = 3, dirty_prob: float = 0.5) -> None:
         # Inicializa o ambiente com o tamanho especificado e probabilidade de sujeira
         self.size = size
         self.positionX = random.randint(0, size - 1)
@@ -42,37 +39,26 @@ class Environment:
         elif action == 'RIGHT' and self.positionY < self.size - 1:
             self.positionY += 1
 
-        if action == 'SUCK' and self.maze[self.positionX][self.positionY] > 0:
-            # Se a ação for aspirar e há sujeira na posição atual, realiza a aspiração
-            dirt = self.maze[self.positionX][self.positionY]
-            if dirt > CLEAN_PER_TIME:
-                self.maze[self.positionX][self.positionY] -= CLEAN_PER_TIME
-            else:
-                self.maze[self.positionX][self.positionY] = 0
+    def suck(self):
+        # Realiza a aspiração e remove a sujeira da posição atual
+        if self.maze[self.positionX][self.positionY] > 0:
+            self.maze[self.positionX][self.positionY] = 0
 
-    def is_dirty(self):
-        # Verifica se a posição atual contém sujeira
-        return self.maze[self.positionX][self.positionY] > 0
+    def visualize(self, action: str = None) -> None:
+        # Visualiza o estado atual do ambiente a cada passo do agente
+        print(f"Agent position: ({self.positionX}, {self.positionY})")
+        print("Environment:")
+        for row in self.maze:
+            print([" A " if i == 1 else " 0 " for i in row])
+        if action:
+            print(f"Agent took action: {action}")
+        print()
 
-    def is_valid_position(self, x, y):
-        # Verifica se a posição é válida dentro do ambiente
-        return 0 <= x < self.size and 0 <= y < self.size
+    def has_dirt(self) -> bool:
+        # Verifica se há sujeira no ambiente
+        return any(any(row) for row in self.maze)
 
-    def print_maze(self):
-        # Imprime o estado atual do ambiente (matriz de sujeira)
-        for x in range(self.size):
-            for y in range(self.size):
-                print(f'{self.maze[x][y]:2}', end=' ')
-            print()
-
-    def visualize(self) -> None:
-        # Visualiza o ambiente, destacando a posição do agente com 'A'
-        if self.positionX % 2 == 0:
-            for x in range(self.size):
-                for y in range(self.size):
-                    if self.positionX == x and self.positionY == y:
-                        print('A', end=' ')
-                    else:
-                        print(f'{self.maze[x][y]:2}', end=' ')
-                print()
-            print()
+    def visualize_end(self) -> None:
+        # Método adicional para visualizar o estado final
+        print("Final State:")
+        self.visualize()
