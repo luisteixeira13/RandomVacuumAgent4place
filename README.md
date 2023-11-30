@@ -2,7 +2,7 @@
 
 # Alunos: Isaac Orcine e Luis Felipe Costa Teixeira -- Turma 14A
 
-Este é um projeto simples de um aspirador de pó que se move aleatoriamente em um ambiente bidimensional.
+Este é um projeto simples de um aspirador de pó que se move aleatoriamente em um ambiente bidimensional. Esse é um ambiente simulado de um aspirador de pó automático (Random Vacuum Agent). O ambiente é representado por uma grade (matriz) onde o agente (aspirador de pó) se move. O objetivo do agente é limpar as sujeiras presentes na grade. A principio ele vai se mover aleatoriamente até que limpe toda sujeira e assim termina a execução. (Podem ser adicionadas medidas para que ele termine de outra forma ou tenha um tempo de vida)
 
 ## Conteúdo
 
@@ -58,6 +58,6 @@ Navegue até o Diretório do Projeto:
 
     Melhorar a lógica de decisão do agente para torná-lo mais inteligente.
     Adicionar mais recursos ao ambiente, como obstáculos ou múltiplos agentes.
-    ... (adicionar qualquer outro desenvolvimento futuro planejado)
+    
 
 
