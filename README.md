@@ -4,6 +4,10 @@
 
 Este é um projeto simples de um aspirador de pó que se move aleatoriamente em um ambiente bidimensional. Esse é um ambiente simulado de um aspirador de pó automático (Random Vacuum Agent). O ambiente é representado por uma grade (matriz) onde o agente (aspirador de pó) se move. O objetivo do agente é limpar as sujeiras presentes na grade. A principio ele vai se mover aleatoriamente até que limpe toda sujeira e assim termina a execução. (Podem ser adicionadas medidas para que ele termine de outra forma ou tenha um tempo de vida)
 
+Considerações ao professor: Eu deixei propositalmente uma "falha" no aspirador, onde ele mesmo estando no limite do mapa, ele tenta realizar qualquer uma das ações, mesmo que algumas ele não vai conseguir.
+Se o mapa inicializa sem sujeira, baseado na probabilidade, o programa se encerra(é assim que aconteceria após o aspirador limapr tudo), mas isso é raro, altere a vontade a probabilidade para que teste melhor.
+Vou deixar umas issues caso alguém queira movimentar e brincar, pois o código em si deve estar com sujeiras
+
 ## Conteúdo
 
 1. [Estrutura do Projeto](#estrutura-do-projeto)
