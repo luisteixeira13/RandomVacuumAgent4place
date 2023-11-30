@@ -2,10 +2,6 @@
 import random
 from typing import List
 
-OBSTACLE = '-1'
-MAP_ROAD = '-'
-MAP_OBSTACLE = 'O'
-CLEAN_PER_TIME = 10
 
 class Environment:
     def __init__(self, size: int = 3, dirty_prob: float = 0.5) -> None:
@@ -16,7 +12,15 @@ class Environment:
         self.dirty_prob = dirty_prob
         self.maze = [[0 for _ in range(size)] for _ in range(size)]
         self.generate_random_dirt()
-
+        print("Bem-vindo ao ambiente do aspirador de pó!")
+        print("O ambiente é representado por uma grade, onde:")
+        print(" - 'A' representa a posição atual do agente.")
+        print(" - '1' representa uma sujeira.")
+        print(" - '0' representa uma posição limpa.")
+        print("\nEstado Inicial do Ambiente:")
+        self.visualize()
+        print("\nLimpeza:")
+    
     def generate_random_dirt(self) -> None:
         # Gera aleatoriamente sujeira no ambiente com base na probabilidade
         for x in range(self.size):
@@ -48,8 +52,16 @@ class Environment:
         # Visualiza o estado atual do ambiente a cada passo do agente
         print(f"Agent position: ({self.positionX}, {self.positionY})")
         print("Environment:")
-        for row in self.maze:
-            print([" A " if i == 1 else " 0 " for i in row])
+        for x in range(self.size):
+            row_str = []
+            for y in range(self.size):
+                if (x, y) == (self.positionX, self.positionY):
+                    row_str.append(" A ")
+                elif self.maze[x][y] == 1:
+                    row_str.append(" 1 ")
+                else:
+                    row_str.append(" 0 ")
+            print(row_str)
         if action:
             print(f"Agent took action: {action}")
         print()
